@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slideshow</title>
+  <style>
+    #slideshow-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    #slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      border-radius: 8px;
+    }
+    .settings {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .settings label, .settings input {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1 style="text-align:center;">Image Slideshow</h1>
+
+<div class="settings">
+  <label for="width">Width (px):</label>
+  <input type="number" id="width" value="500" min="100" max="1000">
+  
+  <label for="height">Height (px):</label>
+  <input type="number" id="height" value="300" min="100" max="1000">
+  
+  <label for="interval">Interval (ms):</label>
+  <input type="number" id="interval" value="2000" min="500">
+  
+  <button onclick="startSlideshow()">Start Slideshow</button>
+  <button onclick="stopSlideshow()">Stop Slideshow</button>
+</div>
+
+<div id="slideshow-container">
+  <div id="slideshow">
+    <img src="https://primamediamts.servicecdn.ru/f/original/3569/3568192.jpg?2d2dfc8d3ae1c3637387b1005054a699" alt="Image 1">
+  </div>
+</div>
+
+<script src="task_5.js"></script>
+
+</body>
+</html>

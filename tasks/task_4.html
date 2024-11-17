@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array Calculation</title>
+  <style>
+    #modal {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      width: 300px;
+    }
+    #result {
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="modal">
+  <div class="modal-content">
+    <h2>Array Calculation</h2>
+    <label for="arraySize">Enter array size:</label>
+    <input type="number" id="arraySize" min="1" required>
+    <button onclick="calculateArrays()">Generate and Calculate</button>
+  </div>
+</div>
+
+
+<div id="result">
+  <h2>Results:</h2>
+  <p id="arrayA"></p>
+  <p id="arrayB"></p>
+  <p id="arrayCBefore"></p>
+  <p id="arrayCAfterSwap"></p>
+  <p id="arrayCSorted"></p>
+</div>
+
+<script>
+  function calculateArrays() {
+    const arraySize = parseInt(document.getElementById('arraySize').value); // Получаем размер массива от пользователя
+
+    
+    if (isNaN(arraySize) || arraySize <= 0) {
+      alert("Please enter a valid array size.");
+      return;
+    }
+
+    
+    document.getElementById('modal').style.display = 'none';
+
+
+    const A = Array.from({ length: arraySize }, () => Math.floor(Math.random() * 100)); 
+    const B = Array.from({ length: arraySize }, () => Math.floor(Math.random() * 100));
+
+    
+    const C = A.map((ai, i) => ai !== B[i] ? 1 / (ai - B[i]) : 1);
+
+    
+    function swapMaxAndFirst(arr) {
+      const maxIndex = arr.indexOf(Math.max(...arr)); 
+      [arr[0], arr[maxIndex]] = [arr[maxIndex], arr[0]]; 
+      return arr;
+    }
+
+    
+    const C_before = [...C];
+
+    
+    const C_after = swapMaxAndFirst(C);
+
+    
+    function bubbleSort(arr) {
+      let swapped;
+      do {
+        swapped = false;
+        for (let i = 0; i < arr.length - 1; i++) {
+          if (arr[i] > arr[i + 1]) {
+            [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; 
+            swapped = true;
+          }
+        }
+      } while (swapped);
+      return arr;
+    }
+
+    
+    const sortedC = bubbleSort([...C_after]);
+
+   
+    document.getElementById('arrayA').textContent = `Array A: ${A.join(', ')}`;
+    document.getElementById('arrayB').textContent = `Array B: ${B.join(', ')}`;
+    document.getElementById('arrayCBefore').textContent = `Array C before swapping: ${C_before.join(', ')}`;
+    document.getElementById('arrayCAfterSwap').textContent = `Array C after swapping max and first: ${C_after.join(', ')}`;
+    document.getElementById('arrayCSorted').textContent = `Array C after bubble sort: ${sortedC.join(', ')}`;
+  }
+</script>
+
+</body>
+</html>
