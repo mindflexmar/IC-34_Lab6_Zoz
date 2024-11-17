@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits</title>
+</head>
+<body>
+    <h2>Завдання 3</h2>
+    <script>const fruits = [
+        { name: "apple", price: 200 },
+        { name: "orange", price: 300 },
+        { name: "grapes", price: 750 },
+      ];
+      
+      const applyDiscountAndAssignID = (items) => {
+        return items.map((item, index) => ({
+          ...item,
+          price: item.price * 0.8, // Знижка 20%
+          id: index + 1,           // Генерація ID
+        }));
+      };
+      
+      const updatedFruits = applyDiscountAndAssignID(fruits);
+      console.log(updatedFruits);
+      </script>
+</body>
+</html>

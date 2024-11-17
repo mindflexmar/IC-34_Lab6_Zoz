@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Завдання 6</h2>
+    <script>
+  function checkBrackets(str) {
+    const stack = [];
+    const brackets = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    };
+
+    for (const char of str) {
+        if (['(', '{', '['].includes(char)) {
+            stack.push(char);
+        } else if ([')', '}', ']'].includes(char)) {
+            if (stack.pop() !== brackets[char]) {
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
+}
+
+function checkCodeForBrackets() {
+    const codeInput = prompt("Введіть рядок JavaScript-коду для перевірки дужок:");
+
+    if (codeInput !== null) {
+        const isValid = checkBrackets(codeInput);
+
+        console.log(isValid
+            ? "Код містить правильні дужки."
+            : "Код містить помилки в дужках.");
+    } else {
+        console.log("Операція була скасована користувачем.");
+    }
+}
+
+window.onload = function() {
+    checkCodeForBrackets();
+};
+
+      </script>
+</body>
+</html>
