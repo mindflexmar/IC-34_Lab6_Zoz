@@ -8,7 +8,7 @@
 <body>
     <h1>Завдання 2</h1>  
  <script>
- const medicines = {
+const medicines = {
     Агалгін: new Date("2022-05-01"),
     Ношпа: new Date("2025-07-02"),
     Альфахолін: new Date("2024-12-21"),
@@ -16,14 +16,18 @@
     Аспаркам: new Date("2024-04-18"),
 };
 
+
 const currentDate = new Date();
 
-const result = Object.entries(medicines)
-    .filter(([_, expirationDate]) => expirationDate > currentDate)
-    .sort(([, dateA], [, dateB]) => dateA - dateB)
-    .map(([name]) => name);
+
+const result = Object.entries(medicines) // Отримуємо масив пар [назва, дата]
+    .filter(([_, expiryDate]) => expiryDate > currentDate) // Прибираємо прострочені медикаменти
+    .sort(([, dateA], [, dateB]) => dateA - dateB) // Сортуємо медикаменти за датою придатності
+    .map(([name]) => name); // Отримуємо лише назви препаратів
+
 
 console.log(result);
+
 </script>   
 </body>
 </html>
